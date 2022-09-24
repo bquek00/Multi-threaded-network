@@ -1,0 +1,386 @@
+URL to view log online:
+https://source.eait.uq.edu.au/viewvc/csse2310-sem1-s4592620/trunk/a4/?view=log
+
+Retrieving logs at Fri Jun 3 15:26:48 AEST 2022
+------------------------------------------------------------------------
+r1 | uqpsutto | 2022-02-22 19:42:16 +1000 (Tue, 22 Feb 2022) | 1 line
+Changed paths:
+   A /play
+   A /prac
+   A /trunk
+   A /trunk/a1
+   A /trunk/a3
+   A /trunk/a4
+
+Initial repository structure
+
+
+------------------------------------------------------------------------
+r47 | s4592620 | 2022-05-28 23:14:48 +1000 (Sat, 28 May 2022) | 2 lines
+Changed paths:
+   A /trunk/a4/dbclient.c
+
+Created the file for dbclient.
+
+
+Index: dbclient.c
+ dbclient.c |    6 ++++++
+ 1 file changed, 6 insertions(+)
+
+------------------------------------------------------------------------
+r48 | s4592620 | 2022-05-28 23:55:34 +1000 (Sat, 28 May 2022) | 2 lines
+Changed paths:
+   A /trunk/a4/Makefile
+   M /trunk/a4/dbclient.c
+
+Added a Makefile to compile dbclient. Also added functionality to dbclient to check that comman line arguments are of the correct length and had a valid key. 
+
+
+Index: Makefile
+ Makefile |    5 +++++
+ 1 file changed, 5 insertions(+)
+Index: dbclient.c
+ dbclient.c |   36 ++++++++++++++++++++++++++++++++++--
+ 1 file changed, 34 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r49 | s4592620 | 2022-05-29 14:07:22 +1000 (Sun, 29 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbclient.c
+
+Added functionality to dbclient to set up the client and send a HTTP request to get a key/value pair.
+
+
+Index: dbclient.c
+ dbclient.c |   50 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+
+------------------------------------------------------------------------
+r50 | s4592620 | 2022-05-29 14:24:57 +1000 (Sun, 29 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbclient.c
+
+Added functionality for dbclient to set a key/value pay by a PUT http request.
+
+
+Index: dbclient.c
+ dbclient.c |    9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r51 | s4592620 | 2022-05-29 15:08:57 +1000 (Sun, 29 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbclient.c
+
+Added additional functionality to dbclient so that it will return appropriately based on the http resposne.
+
+
+Index: dbclient.c
+ dbclient.c |   22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
+
+------------------------------------------------------------------------
+r52 | s4592620 | 2022-05-29 15:19:58 +1000 (Sun, 29 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/Makefile
+
+Added changes to the Makefile to compile dbclient.c
+
+
+Index: Makefile
+ Makefile |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r53 | s4592620 | 2022-05-29 18:49:25 +1000 (Sun, 29 May 2022) | 2 lines
+Changed paths:
+   A /trunk/a4/dbserver.c
+
+Created the dbserver.c file and added initial functionality to check command lind arguments and open the port for listening. 
+
+
+Index: dbserver.c
+ dbserver.c |  121 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+
+------------------------------------------------------------------------
+r54 | s4592620 | 2022-05-29 20:02:17 +1000 (Sun, 29 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added a proccess_connections() function that will spawn a thread for each incoming connection. 
+
+
+Index: dbserver.c
+ dbserver.c |   42 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+------------------------------------------------------------------------
+r55 | s4592620 | 2022-05-30 16:20:46 +1000 (Mon, 30 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/Makefile
+   M /trunk/a4/dbserver.c
+
+Added functionality in the client_thread() function to send a Bad Request response if a request with an unavailable service is received. 
+
+
+Index: Makefile
+ Makefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: dbserver.c
+ dbserver.c |   56 ++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 50 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r56 | s4592620 | 2022-05-30 17:29:09 +1000 (Mon, 30 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added a new struct Param to store all the information they will need to passed to threads such as the file descriptor poiter, the database and a semiphore guard. Also added functions take_lock(), release_lock() and init_lock() functions to handle semiphore guards. 
+
+
+Index: dbserver.c
+ dbserver.c |   54 +++++++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 49 insertions(+), 5 deletions(-)
+
+------------------------------------------------------------------------
+r57 | s4592620 | 2022-05-31 11:29:23 +1000 (Tue, 31 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added functionality in the client_thread() function to receive request and send back the appropriate response and change the database as required.
+
+
+Index: dbserver.c
+ dbserver.c |   77 ++++++++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 61 insertions(+), 16 deletions(-)
+
+------------------------------------------------------------------------
+r58 | s4592620 | 2022-05-31 18:50:18 +1000 (Tue, 31 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Editing the client_thread() function to clean up code and remove repeated code. 
+
+
+Index: dbserver.c
+ dbserver.c |   45 ++++++++++++++++++++-------------------------
+ 1 file changed, 20 insertions(+), 25 deletions(-)
+
+------------------------------------------------------------------------
+r59 | s4592620 | 2022-05-31 19:18:52 +1000 (Tue, 31 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added a check_address() function to check whether to http address is either private or public.
+
+
+Index: dbserver.c
+ dbserver.c |   33 ++++++++++++++++++++++++++-------
+ 1 file changed, 26 insertions(+), 7 deletions(-)
+
+------------------------------------------------------------------------
+r60 | s4592620 | 2022-05-31 20:53:51 +1000 (Tue, 31 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added fuctionality in the client_thread() function to add functionality to delete a given key value pair and send back to appropriate response. 
+
+
+Index: dbserver.c
+ dbserver.c |   13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r61 | s4592620 | 2022-05-31 21:16:44 +1000 (Tue, 31 May 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/Makefile
+
+Added a linnk to csse2310 a3 library.
+
+
+Index: Makefile
+ Makefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r62 | s4592620 | 2022-06-01 19:13:00 +1000 (Wed, 01 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added functions check_address() and check_authString to check whether an address is private or public and if it is private, check the authentication string. 
+
+
+Index: dbserver.c
+ dbserver.c |  195 ++++++++++++++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 135 insertions(+), 60 deletions(-)
+
+------------------------------------------------------------------------
+r63 | s4592620 | 2022-06-01 20:11:35 +1000 (Wed, 01 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Modified main() function to set up a signal handler using pthread_sigmask(). Also added a function signal_handler() that handles signals.
+
+
+Index: dbserver.c
+ dbserver.c |   42 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+------------------------------------------------------------------------
+r64 | s4592620 | 2022-06-02 09:52:54 +1000 (Thu, 02 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Made changes the signal_hadler() function to print out the appropriate statistics to stderr when receiving the SIGHUP signal.
+
+
+Index: dbserver.c
+ dbserver.c |   71 ++++++++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 47 insertions(+), 24 deletions(-)
+
+------------------------------------------------------------------------
+r65 | s4592620 | 2022-06-02 19:31:02 +1000 (Thu, 02 Jun 2022) | 2 lines
+Changed paths:
+   A /trunk/a4/stringstore.c
+
+Created the stringstore.c file and added basic functionality to get, put, delete and free a StringStore linked list.
+
+
+Index: stringstore.c
+ stringstore.c |   73 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+
+------------------------------------------------------------------------
+r66 | s4592620 | 2022-06-02 20:47:43 +1000 (Thu, 02 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/stringstore.c
+
+Fixed bugs regarding missing header lines. 
+
+
+Index: stringstore.c
+ stringstore.c |   17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+------------------------------------------------------------------------
+r67 | s4592620 | 2022-06-02 20:54:41 +1000 (Thu, 02 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/Makefile
+
+Added to the Makefile to compile stringstore.c
+
+
+Index: Makefile
+ Makefile |   12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r68 | s4592620 | 2022-06-02 22:58:21 +1000 (Thu, 02 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added get(), put(), delete(), bad_request() and not_authorized() functions to help split up the functionality in the client_thread() function.
+
+
+Index: dbserver.c
+ dbserver.c |  181 +++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 112 insertions(+), 69 deletions(-)
+
+------------------------------------------------------------------------
+r69 | s4592620 | 2022-06-03 00:12:25 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added a function send_service_unavailable() that will send a 503 HTTP response to the cli    ent if a client, beyond the limit of connections, attempts to connect. 
+
+
+Index: dbserver.c
+ dbserver.c |   37 +++++++++++++++++++++++++++++++------
+ 1 file changed, 31 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r70 | s4592620 | 2022-06-03 01:40:09 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added explanatory comments for functions and added functions process_auth_file() and process_port() to split up the functionality of the main() function.
+
+
+Index: dbserver.c
+ dbserver.c |  137 ++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 77 insertions(+), 60 deletions(-)
+
+------------------------------------------------------------------------
+r71 | s4592620 | 2022-06-03 11:16:46 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Created additional functions to split the functionality of the client_thread() function. 
+
+
+Index: dbserver.c
+ dbserver.c |  187 +++++++++++++++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 140 insertions(+), 47 deletions(-)
+
+------------------------------------------------------------------------
+r72 | s4592620 | 2022-06-03 11:17:28 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbclient.c
+
+Added send_put() and send_get() functions to split up the functionality of the main function.
+
+
+Index: dbclient.c
+ dbclient.c |  105 ++++++++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 69 insertions(+), 36 deletions(-)
+
+------------------------------------------------------------------------
+r73 | s4592620 | 2022-06-03 11:18:48 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/stringstore.c
+
+Fixed style issues to standardize all pointer* to be on the left hand side of the declaration. 
+
+
+Index: stringstore.c
+ stringstore.c |   18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+------------------------------------------------------------------------
+r74 | s4592620 | 2022-06-03 15:25:52 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbserver.c
+
+Added more information in the function comments. Also added definitions to fix magic numbers.
+
+
+Index: dbserver.c
+ dbserver.c |   36 +++++++++++++++++++++++++++++-------
+ 1 file changed, 29 insertions(+), 7 deletions(-)
+
+------------------------------------------------------------------------
+r75 | s4592620 | 2022-06-03 15:26:15 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/dbclient.c
+
+Added comments for structs and added defined constants to fix magic numbers. 
+
+
+Index: dbclient.c
+ dbclient.c |    7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r76 | s4592620 | 2022-06-03 15:26:37 +1000 (Fri, 03 Jun 2022) | 2 lines
+Changed paths:
+   M /trunk/a4/stringstore.c
+
+Fixed a bug where adding a new key value pair would create a new pair instead of checking is the key already exists and overiding it. 
+
+
+Index: stringstore.c
+ stringstore.c |   14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
